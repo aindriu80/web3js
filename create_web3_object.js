@@ -12,3 +12,13 @@ let url_geth = "http://127.0.0.1:1745";
 let web3 = new Web3(url_infura);
 
 console.log(web3);
+
+let address = "0x742d35Cc6634C0532925a3b844Bc454e4438f44e";
+
+web3.eth.getBalance(address, function(error, balance) {
+  if (!error) {
+    console.log(web3.utils.frombWei(balance, "either"));
+  } else {
+    console.log(error);
+  }
+});
