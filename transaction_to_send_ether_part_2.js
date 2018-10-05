@@ -10,10 +10,21 @@ const privateKey1 = Buffer.from(
 );
 const account2 = "0x25e20af4D202CfE4EA483EE4Bd87ED42420fFdC0";
 
-// build a transaction object
+web3.eth.getTransactionCount(account1, (error, txCount) => {
+  // build a transaction object
+  const txObject = {
+    nonce: web3.utils.toHex(txCount),
+    to: account2,
+    value: web3.utils.toHex(web3.utils.toWei("0.3", "ether")),
+    gasLimit: web3.utils.toHex(21000),
+    gasPrice: web3.utils.toHex(web3.utils.toWei("10", "gwei"))
+  };
 
-// sign transcation with private key of sender
+  console.log(txObject);
 
-// serialize the transaction
+  // sign transcation with private key of sender
 
-// broadcast transaction to the network
+  // serialize the transaction
+
+  // broadcast transaction to the network
+});
