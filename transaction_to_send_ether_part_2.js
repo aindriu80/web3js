@@ -20,11 +20,18 @@ web3.eth.getTransactionCount(account1, (error, txCount) => {
     gasPrice: web3.utils.toHex(web3.utils.toWei("10", "gwei"))
   };
 
-  console.log(txObject);
+  // console.log(txObject);
 
   // sign transcation with private key of sender
+  const tx = new Tx(txObject);
+  tx.sign(privateKey1);
 
   // serialize the transaction
+  const serializedTransaction = tx.serialize();
+  const raw = "0x" + serializedTransaction.toString("hex");
 
   // broadcast transaction to the network
+  web3.eth.sendSignedTransaction(raw, (error, txHash) => {
+    console.log(txHash);
+  });
 });
